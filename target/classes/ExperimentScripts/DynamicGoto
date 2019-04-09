@@ -1,0 +1,21 @@
+{
+   "header":{
+      "sourceSystem":"uoa.kg.register",
+      "sourceModule":"navigation",
+      "time":1000000000
+   },
+   "location":{
+      "latitude":1.1,
+      "longitude":2.2,
+      "height":3.3,
+      "n":4.4,
+      "e":5.5,
+      "d":6.6,
+      "depth":7.7,
+      "altitude":8.8
+   },
+   "speed":10.0,
+   "timeout":20.0
+}
+
+
