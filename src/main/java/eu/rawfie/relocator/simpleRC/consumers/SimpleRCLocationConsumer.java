@@ -32,7 +32,7 @@ public class SimpleRCLocationConsumer implements Runnable {
 	private int finalIndexNumber;
 
 	public SimpleRCLocationConsumer(String brokers, String schemaRegistry, String groupId, String testbed,
-			int partitionNumber, ArrayList<Triplet<Double, Double,Float>> coordinates, Triplet<Boolean,Boolean,Double> functions, GotoProducer gotoProducer, EventBus eventBus, int threadId,
+			Integer partitionNumber, ArrayList<Triplet<Double, Double,Float>> coordinates, Triplet<Boolean,Boolean,Double> functions, GotoProducer gotoProducer, EventBus eventBus, int threadId,
 			Boolean[] stationsCheck) {
 		Properties prop = createConsumerConfig(brokers, schemaRegistry, groupId);
 		this.consumer = new KafkaConsumer<>(prop);
