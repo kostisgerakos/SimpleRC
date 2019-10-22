@@ -77,14 +77,15 @@ public class LDS_all {
 		{
 			
 			r=DecisionMake(i,  q[i], L1, ST1 ,ST3,changes, C, index , Os);
-//			if(active==false)
+			System.out.println(r);
+//			if(r==false)
 //			{
-//				if (stopped=true)
+//				if (stopped=false)
 //					System.out.println("+++++++++++++++Wake up+++++++++++++++++++++++++++");
 //				else
 //					System.out.println("-----------------------Sleeeeppppppp--------------");
 //			}
-//				
+				
 				
 			
 			i=i+1;
@@ -107,7 +108,7 @@ public class LDS_all {
 		double s0=10.3309;
 		double m1=36.5990;
 		double s1=7.3819;
-		int MAXTHRESHOLD=60;
+		int MAXTHRESHOLD=30;
 		
 		int i=round;
 		
@@ -132,16 +133,26 @@ public class LDS_all {
 		sum=sum+L;
 		ST1.add(sum);
 		t=sum-Collections.min(ST1);
-	
+		int change=0;
 		
-		if (i>1)
+		if(changes.size()>0)
+			change=changes.get(changes.size()-1);
+		
+		if ((i-change)>1)
 		{
 			if (active==false)
 			{
 				if (badcounter==MAXTHRESHOLD)
-						active=true;
+				{	active=true;
+					changes.add(i);
+					badcounter=0;
+					sum=0.0;
+					index.add(i);
+					
+					
+				}
 				result=LDS_function(badcounter, r_star,q_i,  x_star);
-				System.out.println("xstar "+x_star+ " r_star "+r_star+ " badcounter "+ badcounter + "q_i" + q_i);
+				//System.out.println("xstar "+x_star+ " r_star "+r_star+ " badcounter "+ badcounter + "q_i" + q_i);
 				x_star=result[0];
 				if (result[1]==1.0)
 						stopped=true;
@@ -169,7 +180,7 @@ public class LDS_all {
 				C.add(active);
 			}
 		}
-		if(i>3)
+		if((i-change)>3)
 		{
 			if(CH(C,C.size()-1)==true)
 			{
@@ -190,7 +201,7 @@ public class LDS_all {
 		}
 		ST3.add(t);
 		
-		return stopped;
+		return active;
 	}
 	
 	public static boolean CH(ArrayList<Boolean> C, int m)
@@ -217,7 +228,7 @@ public class LDS_all {
 			x_current=q_curr;
 			if (x_current>x_star)
 			{
-				System.out.println("$$$$$$$$$$$$$$$$$$$$$$$"+ x_current+ " : "+x_star);
+				//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$"+ x_current+ " : "+x_star);
 				x_star=x_current;
 			}
 		}
@@ -282,7 +293,7 @@ public class LDS_all {
 		int k=(int)x;
 		for (i=k;i<N;i++)			
 		{
-			sum=sum+1/x;
+			sum=sum+(1/x);
 			
 		}
 		y = (sum + x * (2 * gamma / N) / (1 - (gamma / N)) - ((1 + gamma) / 1 - gamma / N));
