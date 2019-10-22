@@ -151,6 +151,7 @@ public class LDS_all {
 					
 					
 				}
+				/************an den theloume tin LDS**************************/
 				result=LDS_function(badcounter, r_star,q_i,  x_star);
 				//System.out.println("xstar "+x_star+ " r_star "+r_star+ " badcounter "+ badcounter + "q_i" + q_i);
 				x_star=result[0];
@@ -168,6 +169,7 @@ public class LDS_all {
 					System.out.println("LDS STOPPED ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ");
 					x_star=0.0;
 				}
+				/***************ews edw LDS****************************/
 				badcounter=badcounter+1;
 				C.add(active);
 				
