@@ -104,10 +104,10 @@ public class LDS_all {
 	{
 		double q_curr,n,L, f0q,f0temp,f1q,f1temp;; //insert
 		
-		double m0=81.5669;
-		double s0=10.3309;
-		double m1=36.5990;
-		double s1=7.3819;
+		double m0=93.5468;
+		double s0= 1.6489;
+		double m1=35.0898;
+		double s1=3.8456;
 		int MAXTHRESHOLD=30;
 		
 		int i=round;
