@@ -43,4 +43,26 @@ public class FileWifiReader  {
 		
 		return quality;
 	}
+	
+	public double getQualityNormalized(double PLi,double RTTi, double TTLi)
+	{
+		double q,PL_curr,RTT_curr,TTL_curr;
+		double minRTT=  23.9560;
+		double maxRTT=171.4970;
+		double minPL=0;
+		double maxPL=30;
+		
+		double minTTL= 19874;
+		double maxTTL= 20005; 
+
+		 PL_curr= Math.abs((( maxPL - PLi ) / ( minPL - maxPL)));
+		 RTT_curr=Math.abs((( maxRTT - RTTi) / ( minRTT - maxRTT)));
+		 TTL_curr=Math.abs((( TTLi-minTTL) / ( maxTTL - minTTL  ))); 
+		 q=(0.4*PL_curr+0.4*RTT_curr+ 0.2*TTL_curr)*100;
+		
+		return q;
+		
+	}
+	
+	
 }

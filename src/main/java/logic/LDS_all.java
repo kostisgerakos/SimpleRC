@@ -63,7 +63,8 @@ public class LDS_all {
 		
 		
 		for(i=0;i<500;i++)
-			q[i]=reader.getWifiQuality();
+			q[i]=(reader.getWifiQuality()*100);
+			
 		
 		double[] Os;
 		Os=LDS_ost(CLUSTERS,10);

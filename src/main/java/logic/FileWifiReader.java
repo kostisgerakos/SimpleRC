@@ -21,8 +21,8 @@ public class FileWifiReader implements WifiQualityReader {
 
 		try {
 			//reader = new BufferedReader(new FileReader("Q_all.csv"));
-			reader = new BufferedReader(new FileReader("Medium_Q_all.csv"));
-			
+		//	reader = new BufferedReader(new FileReader("Medium_Q_all.csv"));
+			reader = new BufferedReader(new FileReader("Q_diff2_kafka.csv"));
 			while((line=reader.readLine()) != null){
 				
 	                // use comma as separator
