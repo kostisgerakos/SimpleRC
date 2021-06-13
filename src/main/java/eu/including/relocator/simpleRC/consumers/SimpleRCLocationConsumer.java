@@ -1,4 +1,4 @@
-package eu.rawfie.relocator.simpleRC.consumers;
+package eu.including.relocator.simpleRC.consumers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,11 +7,12 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
+import org.javatuples.Quartet;
 import org.javatuples.Triplet;
 
 import com.google.common.eventbus.EventBus;
 
-import eu.rawfie.relocator.simpleRC.producers.GotoProducer;
+import eu.including.relocator.simpleRC.producers.GotoProducer;
 import eu.rawfie.uxv.Location;
 
 public class SimpleRCLocationConsumer implements Runnable {
@@ -32,7 +33,7 @@ public class SimpleRCLocationConsumer implements Runnable {
 	private int finalIndexNumber;
 
 	public SimpleRCLocationConsumer(String brokers, String schemaRegistry, String groupId, String testbed,
-			Integer partitionNumber, ArrayList<Triplet<Double, Double,Float>> coordinates, Triplet<Boolean,Boolean,Double> functions, GotoProducer gotoProducer, EventBus eventBus, int threadId,
+			Integer partitionNumber, ArrayList<Triplet<Double, Double,Float>> coordinates, Quartet<Boolean,Boolean,Double,Boolean> functions, GotoProducer gotoProducer, EventBus eventBus, int threadId,
 			Boolean[] stationsCheck) {
 		Properties prop = createConsumerConfig(brokers, schemaRegistry, groupId);
 		this.consumer = new KafkaConsumer<>(prop);

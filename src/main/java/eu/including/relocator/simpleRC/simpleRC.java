@@ -1,15 +1,15 @@
-package eu.rawfie.relocator.simpleRC;
+package eu.including.relocator.simpleRC;
 
 import java.util.ArrayList;
 
 import org.javatuples.Pair;
+import org.javatuples.Quartet;
 import org.javatuples.Triplet;
 
 import com.google.common.eventbus.EventBus;
 
-
-import eu.rawfie.relocator.simpleRC.consumers.SimpleRCConsumers;
-import eu.rawfie.relocator.simpleRC.producers.GotoProducer;
+import eu.including.relocator.simpleRC.consumers.SimpleRCConsumers;
+import eu.including.relocator.simpleRC.producers.GotoProducer;
 
 public class simpleRC {
 
@@ -22,8 +22,14 @@ public class simpleRC {
 		String groupId = "RelocateRC";
 		String testbed = "testbed";
 		
+		//operations
+		Boolean boringMode = true;
+		Boolean repeatingMode = false;
+		Double acceptedDistance = 2.0;
+		Boolean indoor = true;
+		
 		GotoProducer gotoProducer = new GotoProducer(brokers, schemaRegistry, testbed + "_Goto");
-		Triplet<Boolean,Boolean,Double> functions = new Triplet<Boolean,Boolean,Double>(true, false, 2.0); //boringMode,repeatingMode,acceptedDistance
+		Quartet<Boolean,Boolean,Double,Boolean> functions = new Quartet<Boolean,Boolean,Double,Boolean>(boringMode, repeatingMode, acceptedDistance, indoor); //boringMode,repeatingMode,acceptedDistance,indoor
 
 		Integer partition1 = 1;
 		Integer partition2 = 2;
@@ -61,8 +67,7 @@ public class simpleRC {
 		
 		
 		
-		SimpleRCConsumers partitonConsumerGroup = new SimpleRCConsumers(brokers, schemaRegistry,
-				groupId, testbed, coordinatedPerPartition,functions, gotoProducer, eventBus);
+		SimpleRCConsumers partitonConsumerGroup = new SimpleRCConsumers(brokers, schemaRegistry,groupId, testbed, coordinatedPerPartition,functions, gotoProducer, eventBus);
 		partitonConsumerGroup.execute();
 	}
 
