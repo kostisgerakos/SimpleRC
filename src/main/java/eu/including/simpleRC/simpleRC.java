@@ -1,4 +1,4 @@
-package eu.including.relocator.simpleRC;
+package eu.including.simpleRC;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,8 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.eventbus.EventBus;
 
 import eu.including.json.DdlScript;
-import eu.including.relocator.simpleRC.consumers.SimpleRCConsumers;
-import eu.including.relocator.simpleRC.producers.GotoProducer;
+import eu.including.json.NodeName;
+import eu.including.simpleRC.consumers.SimpleRCConsumers;
+import eu.including.simpleRC.model.Resource;
+import eu.including.simpleRC.producers.GotoProducer;
 
 public class simpleRC {
 
@@ -23,16 +25,25 @@ public class simpleRC {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		try {
-		    DdlScript script = objectMapper.readValue(json, DdlScript.class);
+			DdlScript script = objectMapper.readValue(json, DdlScript.class);
 
-		    System.out.println("area = " + script.getArea());
-		    //for first json inside location
-		    System.out.println(script.getData().get(0).getLocation().get(0).getTimestep());
-		    //for second json inside location
-		    System.out.println(script.getData().get(0).getLocation().get(1).getTasks().get(5).get(0).getCommand());
+			System.out.println("area = " + script.getArea());
+			// for first json inside location
+			System.out.println(script.getData().get(0).getLocation().get(0).getTimestep());
+			// for second json inside location
+			System.out.println(script.getData().get(0).getLocation().get(1).getTasks().get(5).get(0).getCommand());
+
+			for (int i = 0; i < script.getNodeNames().size(); i++) {
+				Resource resource = new Resource();
+				for(int j = 0; j < script.getData().size() ; j++) {
+					
+				}
+			}
+
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		
 		/*
         EventBus eventBus = new EventBus();
 		//static properties for now

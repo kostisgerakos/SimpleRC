@@ -1,4 +1,4 @@
-package eu.including.relocator.simpleRC.producers;
+package eu.including.simpleRC.producers;
 
 
 import java.util.Properties;

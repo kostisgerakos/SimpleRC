@@ -1,4 +1,4 @@
-package eu.including.relocator.simpleRC.consumers;
+package eu.including.simpleRC.consumers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import org.javatuples.Triplet;
 
 import com.google.common.eventbus.EventBus;
 
-import eu.including.relocator.simpleRC.producers.GotoProducer;
+import eu.including.simpleRC.producers.GotoProducer;
 import eu.including.uxv.Location;
 
 public class SimpleRCLocationConsumer implements Runnable {
