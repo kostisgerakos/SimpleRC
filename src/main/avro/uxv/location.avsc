@@ -1,5 +1,5 @@
 {
-  "namespace": "eu.rawfie.uxv",
+  "namespace": "eu.including.uxv",
   "name": "Location",
   "type": "record",
   "doc": "Geographic location",

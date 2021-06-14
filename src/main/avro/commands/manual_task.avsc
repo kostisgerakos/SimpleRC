@@ -1,0 +1,37 @@
+{
+  "namespace": "eu.including.uxv.commands",
+  "name": "ManualTask",
+  "type": "record",
+  "doc": "Command a group of people to move to a given location and perform a given task",
+  "fields": [
+    {
+      "name": "header",
+      "type": "eu.including.uxv.Header"
+    },
+    {
+      "name": "step",
+      "type": "int"
+    },
+    {
+      "name": "latitude",
+      "type": "double",
+      "unit": "rad",
+      "doc": "Latitude in the WGS 84 reference coordinate system",
+      "min": -1.570796326794897,
+      "max": 1.570796326794897
+    },
+    {
+      "name": "longitude",
+      "type": "double",
+      "doc": "Longitude in the WGS 84 reference coordinate system",
+      "unit": "rad",
+      "min": -3.141592653589793,
+      "max": 3.141592653589793
+    },
+    {
+      "name": "task",
+      "type": "string",
+      "doc": "the task to be performed"
+    }
+  ]
+}

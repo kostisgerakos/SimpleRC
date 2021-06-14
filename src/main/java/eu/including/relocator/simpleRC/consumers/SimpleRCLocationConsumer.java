@@ -13,7 +13,7 @@ import org.javatuples.Triplet;
 import com.google.common.eventbus.EventBus;
 
 import eu.including.relocator.simpleRC.producers.GotoProducer;
-import eu.rawfie.uxv.Location;
+import eu.including.uxv.Location;
 
 public class SimpleRCLocationConsumer implements Runnable {
 

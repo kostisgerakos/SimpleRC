@@ -5,9 +5,9 @@ import java.util.Properties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
-import eu.rawfie.uxv.Header;
-import eu.rawfie.uxv.commands.Goto;
-import eu.rawfie.uxv.commands.Location;
+import eu.including.uxv.Header;
+import eu.including.uxv.commands.Goto;
+import eu.including.uxv.commands.Location;
 
 public class GotoProducer {
 

@@ -1,0 +1,40 @@
+{
+  "namespace": "eu.including.uxv.commands",
+  "name": "TaskResult",
+  "type": "record",
+  "doc": "Status of the task",
+  "fields": [
+    {
+      "name": "header",
+      "type": "eu.including.uxv.Header"
+    },
+    {
+      "name": "step",
+      "type": "int"
+    },
+    {
+      "name" : "result",
+      "type": {
+        "name": "TaskResultType",
+        "type": "enum",
+        "symbols" : [ "COMPLETED", "ONGOING", "BLOCKED", "FAILED" ]
+      }
+    },
+    {
+      "name": "latitude",
+      "type": "double",
+      "unit": "rad",
+      "doc": "Latitude in the WGS 84 reference coordinate system",
+      "min": -1.570796326794897,
+      "max": 1.570796326794897
+    },
+    {
+      "name": "longitude",
+      "type": "double",
+      "doc": "Longitude in the WGS 84 reference coordinate system",
+      "unit": "rad",
+      "min": -3.141592653589793,
+      "max": 3.141592653589793
+    }
+  ]
+}
