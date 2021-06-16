@@ -2,6 +2,7 @@ package eu.including.simpleRC.consumers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -10,8 +11,8 @@ import org.apache.kafka.common.TopicPartition;
 import org.javatuples.Quartet;
 import org.javatuples.Triplet;
 
-import com.google.common.eventbus.EventBus;
 
+import eu.including.simpleRC.model.MissionParameters;
 import eu.including.simpleRC.producers.GotoProducer;
 import eu.including.uxv.Location;
 
@@ -20,8 +21,8 @@ public class SimpleRCLocationConsumer implements Runnable {
 	private final KafkaConsumer<String, Location> consumer;
 	private final String testbed;
 	private final int partitionNumber;
-	private final ArrayList<Triplet<Double, Double, Float>> coordinates;
-	private final EventBus eventBus;
+	//private final ArrayList<Triplet<Double, Double, Float>> coordinates;
+	List<MissionParameters> missionParameters;
 	private final int threadId;
 	private final Boolean[] stationsCheck;
 	private final GotoProducer gotoProducer;
@@ -32,22 +33,26 @@ public class SimpleRCLocationConsumer implements Runnable {
 	
 	private int finalIndexNumber;
 
-	public SimpleRCLocationConsumer(String brokers, String schemaRegistry, String groupId, String testbed,
-			Integer partitionNumber, ArrayList<Triplet<Double, Double,Float>> coordinates, Quartet<Boolean,Boolean,Double,Boolean> functions, GotoProducer gotoProducer, EventBus eventBus, int threadId,
+	public SimpleRCLocationConsumer(String brokers, String schemaRegistry, String groupId, String testbed, Integer partitionNumber, 
+			//ArrayList<Triplet<Double, Double,Float>> coordinates, 
+			List<MissionParameters> missionParameters,
+			Quartet<Boolean,Boolean,Double,Boolean> functions, GotoProducer gotoProducer, int threadId,
 			Boolean[] stationsCheck) {
 		Properties prop = createConsumerConfig(brokers, schemaRegistry, groupId);
 		this.consumer = new KafkaConsumer<>(prop);
 		this.testbed = testbed;
 		this.partitionNumber = partitionNumber;
-		this.coordinates = coordinates;
+		//this.coordinates = coordinates;
+		this.missionParameters = missionParameters;
 		this.boringMode = functions.getValue0();
 		this.repeatingMode = functions.getValue1();
 		this.acceptedDistance = functions.getValue2();
-		this.eventBus = eventBus;
 		this.threadId = threadId;
 		this.stationsCheck = stationsCheck;
 		// this.gotoProducer = gotoProducer;
-		this.finalIndexNumber = coordinates.size()-1;
+		
+		//this.finalIndexNumber = coordinates.size()-1;
+		this.finalIndexNumber = missionParameters.size()-1;
 		
 		this.gotoProducer = gotoProducer;
 		TopicPartition partition = new TopicPartition(this.testbed + "_Location", this.partitionNumber);
@@ -146,6 +151,13 @@ public class SimpleRCLocationConsumer implements Runnable {
 		}
 		return true;
 	}
+	
+//TOGO
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// Pythagorean for small distances
 	public static double distance(double lat1, double long1, double lat2, double long2) {
@@ -178,5 +190,6 @@ public class SimpleRCLocationConsumer implements Runnable {
 		distance = Math.pow(distance, 2) + Math.pow(height, 2);
 		return Math.sqrt(distance);
 	}
+
 
 }

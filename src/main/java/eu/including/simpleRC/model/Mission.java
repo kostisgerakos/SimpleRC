@@ -10,13 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter @Setter
 @AllArgsConstructor
-public class Task {
-	List<TaskItems> taskItems;
-
-	@Override
-	public String toString() {
-		return "Task [taskItems=" + taskItems + "]";
-	}
-	
-	
+public class Mission {
+	List<Resource> resources;
+	String location;
 }

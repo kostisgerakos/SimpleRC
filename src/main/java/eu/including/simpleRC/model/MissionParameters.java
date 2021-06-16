@@ -14,4 +14,12 @@ public class MissionParameters {
 	Goto gotoCommand;
 	Sensor sensorActDeact;
 	Task task;
+	
+	@Override
+	public String toString() {
+		return "MissionParameters [gotoCommand=" + gotoCommand + ", sensorActDeact=" + sensorActDeact + ", task=" + task
+				+ "]";
+	}
+	
+	
 }

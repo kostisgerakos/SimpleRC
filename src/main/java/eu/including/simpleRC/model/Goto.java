@@ -12,4 +12,11 @@ public class Goto {
 	Double latitude;
 	Double longitude;
 	Double height;
+	
+	@Override
+	public String toString() {
+		return "Goto [latitude=" + latitude + ", longitude=" + longitude + ", height=" + height + "]";
+	}
+	
+	
 }

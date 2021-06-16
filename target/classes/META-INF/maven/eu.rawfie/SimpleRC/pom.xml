@@ -45,12 +45,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>18.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.10</artifactId>
 			<version>0.10.0.1</version>
@@ -66,12 +60,6 @@
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-clients</artifactId>
 			<version>1.1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>1.8</version>
 		</dependency>
 
 		<!--<dependency> -->
@@ -125,13 +113,48 @@
 			<version>1.18.20</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>2.33</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-moxy</artifactId>
+			<version>2.33</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>2.33</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
 
 
 	</dependencies>
 	<build>
 		<plugins>
-<plugin>
+			<plugin>
 				<groupId>org.apache.avro</groupId>
 				<artifactId>avro-maven-plugin</artifactId>
 				<version>1.8.0</version>
@@ -140,27 +163,27 @@
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>schema</goal>
-							<!--  <goal>protocol</goal>-->
-        					<!-- <goal>idl-protocol</goal> -->
+							<!-- <goal>protocol</goal> -->
+							<!-- <goal>idl-protocol</goal> -->
 						</goals>
 						<configuration>
 							<sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
 							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-							<!--<fieldVisibility>PRIVATE</fieldVisibility>-->
-							<fieldVisibility>PUBLIC</fieldVisibility>	
-							  <stringType>String</stringType>						
+							<!--<fieldVisibility>PRIVATE</fieldVisibility> -->
+							<fieldVisibility>PUBLIC</fieldVisibility>
+							<stringType>String</stringType>
 							<includes>
 								<include>**/*.avro</include>
 								<include>**/*.avsc</include>
 							</includes>
-							 <imports>
-             					 <import>${project.basedir}/src/main/avro/uxv/header.avsc</import>
-             					 <import>${project.basedir}/src/main/avro/uxv/system_type.avsc</import>
-             					 <import>${project.basedir}/src/main/avro/uxv/sensor_type.avsc</import>
-             					 <import>${project.basedir}/src/main/avro/uxv/location.avsc</import>
-             					 <import>${project.basedir}/src/main/avro/uxv/unit.avsc</import>
-             					 
-     						</imports>
+							<imports>
+								<import>${project.basedir}/src/main/avro/uxv/header.avsc</import>
+								<import>${project.basedir}/src/main/avro/uxv/system_type.avsc</import>
+								<import>${project.basedir}/src/main/avro/uxv/sensor_type.avsc</import>
+								<import>${project.basedir}/src/main/avro/uxv/location.avsc</import>
+								<import>${project.basedir}/src/main/avro/uxv/unit.avsc</import>
+
+							</imports>
 						</configuration>
 					</execution>
 				</executions>
@@ -169,16 +192,17 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-					<plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.6.0</version>
 					<configuration>
-						<source>1.8.0</source>
-						<target>1.8.0</target>
+						<source>1.8</source>
+						<target>1.8</target>
 					</configuration>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
