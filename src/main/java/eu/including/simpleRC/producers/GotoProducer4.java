@@ -17,10 +17,10 @@ import eu.including.uxv.commands.ManualTask;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 
-public class GotoProducer2 {
+public class GotoProducer4 {
 
-	final static GotoProducer2 rtlProd = new GotoProducer2();
-	final static Integer partition = 12; 
+	final static GotoProducer4 rtlProd = new GotoProducer4();
+	final static Integer partition = 15; 
 	public static void main(String[] args) throws InterruptedException, ExecutionException, FileNotFoundException {
 		
 		BasicConfigurator.configure();
@@ -34,8 +34,8 @@ public class GotoProducer2 {
 		
 
 		
-		Double lat = 37.964485480911655;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
-		Double lon =  23.611111663477928;//Math.toRadians(2.1643223535599345);
+		Double lat = 37.96453635226926;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
+		Double lon =  23.611046257446716;//Math.toRadians(2.1643223535599345);
 		String command ="Approach_incident_scene_search_ship_containers_and_secure_scene";
 		
 		Double lat2 = 37.96294802981784;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
@@ -46,20 +46,20 @@ public class GotoProducer2 {
 		Double lon3 =  23.61019920617388;//Math.toRadians(2.1643223535599345);
 		String command3 ="";
 		
-		Double lat4 = 37.964645362321285;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
-		Double lon4 =  23.610883953591486;//Math.toRadians(2.1643223535599345);
-		String command4 ="Enter_the_container_for_further_check";
+		Double lat4 = 37.96307998390331;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
+		Double lon4 =  23.61039366482616;//Math.toRadians(2.1643223535599345);
+		String command4 ="Approach_the_container";
 		
-		Double lat5 = 37.964645362321285;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
-		Double lon5 =  23.610789478213068;//Math.toRadians(2.1643223535599345);
-		String command5 ="Check_the_rest_of_the_personnel_for_possible_contamination_before_they_proceed_to_the_decontamination_zones_";
-	
-		Double lat6 = 37.96303136924024;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
-		Double lon6 =  23.6105325638635;//Math.toRadians(2.1643223535599345);
-		String command6 ="Enter_the_container_for_further_check";
+		Double lat5 = 37.96303136924024;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
+		Double lon5 =  23.6105325638635;//Math.toRadians(2.1643223535599345);
+		String command5 ="Enter_the_container_for_further_check";
 		
-		Double lat7 = 37.96459933585488;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
-		Double lon7 =  23.610639286585837;//Math.toRadians(2.1643223535599345);
+		Double lat6 = 37.964577533844476;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
+		Double lon6 =  23.61110439614113;//Math.toRadians(2.1643223535599345);
+		String command6 ="Activation_for_casualty_care_purposes";
+		
+		Double lat7 = 37.96451212781326;//Math.toRadians(41.80940313621358);0.6631501685058574,"longitude":0.4115732581134363
+		Double lon7 =  23.61116737972674;//Math.toRadians(2.1643223535599345);
 		String command7 ="End_of_exercise";
 		
 	
@@ -67,16 +67,16 @@ public class GotoProducer2 {
 		String topic = "hmod_ManualTask";
 		
 		
-		ManualTask task1 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),211,lat,lon,command);
+		ManualTask task1 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),411,lat,lon,command);
 		//ManualTask task2 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),21,lat2,lon2,command2);
 
-		// ManualTask task3 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),31,lat3,lon3,command3);
+		//ManualTask task3 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),31,lat3,lon3,command3);
 
-		ManualTask task4 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),241,lat4,lon4,command4);
+		// ManualTask task4 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),41,lat4,lon4,command4);
 		
-		ManualTask task5 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),251,lat5,lon5,command5);
-		//ManualTask task6 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),51,lat5,lon5,command5);
-		ManualTask task7 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),271,lat5,lon5,command5);
+		// ManualTask task5 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),51,lat5,lon5,command5);
+		ManualTask task6 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),461,lat5,lon5,command5);
+		ManualTask task7 = new ManualTask(new Header("Resource Controller","Planner",(long) 1551344229L),471,lat5,lon5,command5);
 
 
 		//Goto go = new Goto(new Header("Resource Controller","Planner",(long) 1551344229L),new Location(lat,lon, 0.0f, 0.0, 0.0, 0.0, 0.0f, 0.0f), 2.0f, 3600.0f);

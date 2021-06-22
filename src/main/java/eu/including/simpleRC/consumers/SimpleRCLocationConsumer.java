@@ -11,21 +11,26 @@ import org.apache.kafka.common.TopicPartition;
 import org.javatuples.Quartet;
 import org.javatuples.Triplet;
 
-
+import eu.including.simpleRC.model.Goto;
 import eu.including.simpleRC.model.MissionParameters;
+import eu.including.simpleRC.model.Task;
 import eu.including.simpleRC.producers.GotoProducer;
+import eu.including.simpleRC.producers.ManualTaskProducer;
 import eu.including.uxv.Location;
 
 public class SimpleRCLocationConsumer implements Runnable {
 
 	private final KafkaConsumer<String, Location> consumer;
 	private final String testbed;
-	private final int partitionNumber;
+	private final String resourceCategory;
+	private final Integer partitionNumber;
 	//private final ArrayList<Triplet<Double, Double, Float>> coordinates;
 	List<MissionParameters> missionParameters;
 	private final int threadId;
 	private final Boolean[] stationsCheck;
 	private final GotoProducer gotoProducer;
+	private final ManualTaskProducer manualTaskProducer;
+
 
 	private boolean boringMode;
 	private boolean repeatingMode;
@@ -33,14 +38,15 @@ public class SimpleRCLocationConsumer implements Runnable {
 	
 	private int finalIndexNumber;
 
-	public SimpleRCLocationConsumer(String brokers, String schemaRegistry, String groupId, String testbed, Integer partitionNumber, 
+	public SimpleRCLocationConsumer(String brokers, String schemaRegistry, String groupId, String testbed,String resourceCategory, Integer partitionNumber, 
 			//ArrayList<Triplet<Double, Double,Float>> coordinates, 
 			List<MissionParameters> missionParameters,
-			Quartet<Boolean,Boolean,Double,Boolean> functions, GotoProducer gotoProducer, int threadId,
+			Quartet<Boolean,Boolean,Double,Boolean> functions, GotoProducer gotoProducer,ManualTaskProducer manualTaskProducer, int threadId,
 			Boolean[] stationsCheck) {
 		Properties prop = createConsumerConfig(brokers, schemaRegistry, groupId);
 		this.consumer = new KafkaConsumer<>(prop);
 		this.testbed = testbed;
+		this.resourceCategory = resourceCategory;
 		this.partitionNumber = partitionNumber;
 		//this.coordinates = coordinates;
 		this.missionParameters = missionParameters;
@@ -55,6 +61,7 @@ public class SimpleRCLocationConsumer implements Runnable {
 		this.finalIndexNumber = missionParameters.size()-1;
 		
 		this.gotoProducer = gotoProducer;
+		this.manualTaskProducer = manualTaskProducer;
 		TopicPartition partition = new TopicPartition(this.testbed + "_Location", this.partitionNumber);
 		consumer.assign(Arrays.asList(partition));
 	}
@@ -73,11 +80,18 @@ public class SimpleRCLocationConsumer implements Runnable {
 		return props;
 	}
 
-	@Override
+/*	@Override
 	public void run() {
 		int index = 0;
+		int step = 11;
+		String operator = "Operator";
 		// sending first
-		gotoProducer.sendMessage(coordinates.get(index).getValue0(), coordinates.get(index).getValue1(),coordinates.get(index).getValue2(),partitionNumber);
+		Goto goTo = missionParameters.get(index).getGotoCommand();
+		Task task = missionParameters.get(index).getTask();
+		
+		//if not operator
+		operator.equals("Operator") ? manualTaskProducer.sendMessage(goTo.getLatitude(), goTo.getLongitude(), task.getTaskItems().get(0).getTaskMessage(), step, partitionNumber) 
+			: gotoProducer.sendMessage(goTo.getLatitude(),goTo.getLongitude(),convertToFloat(goTo.getHeight()),partitionNumber);
 
 			while (true) {
 			final ConsumerRecords<String, Location> r = consumer.poll(1000);
@@ -152,12 +166,11 @@ public class SimpleRCLocationConsumer implements Runnable {
 		return true;
 	}
 	
-//TOGO
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	public static Float convertToFloat(Double doubleValue) {
+	    return doubleValue == null ? null : doubleValue.floatValue();
 	}
+	*/
+
 
 	// Pythagorean for small distances
 	public static double distance(double lat1, double long1, double lat2, double long2) {
@@ -189,6 +202,12 @@ public class SimpleRCLocationConsumer implements Runnable {
 		double height = el1 - el2;
 		distance = Math.pow(distance, 2) + Math.pow(height, 2);
 		return Math.sqrt(distance);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
