@@ -26,13 +26,14 @@ public class SimpleRCConsumers {
 	int threadId = 0;  
 	//Boolean[] stationsCheck = new Boolean[coordinatesPerPartition.size()]; 
 	
-	
-	Boolean[] stationsCheck = new Boolean[mission.getResources().size()]; 
+	//Must make different thread tables for operators and other resources
+	Boolean[] stationsCheck = new Boolean[mission.getResources().size()-1]; 
 	Arrays.fill(stationsCheck, Boolean.FALSE);
 	
     partitionConsumers = new ArrayList<>();
     //for (Pair<Integer, ArrayList<Triplet<Double, Double,Float>>> coordinatePerPartition : coordinatesPerPartition) {
     for (Resource resource:  mission.getResources()) {
+    	if(resource.getResourceType().equals("Operator")) { 	
     	//threadId = resource.getPartition();
     	SimpleRCTaskConsumer ncThread =
           //new SimpleRCLocationConsumer(brokers,schemaRegistry, groupId, testbed, coordinatePerPartition.getValue0(), coordinatePerPartition.getValue1(), functions, gotoProducer, eventBus, threadId , stationsCheck);
@@ -40,6 +41,7 @@ public class SimpleRCConsumers {
       partitionConsumers.add(ncThread);
       System.out.println("Started consumer with id:"+ threadId +" for partition" + resource.getPartition());
       threadId++;
+    	}
     }
   }
  

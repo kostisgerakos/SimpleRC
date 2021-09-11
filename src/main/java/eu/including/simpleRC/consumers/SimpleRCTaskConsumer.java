@@ -23,7 +23,7 @@ import eu.including.uxv.commands.ManualTask;
 import eu.including.uxv.commands.TaskResult;
 import eu.including.uxv.commands.TaskResultType;
 
-public class SimpleRCTaskConsumer implements Runnable {
+public class SimpleRCTaskConsumer implements Runnable,SimpleRCConsumersInterface {
 
 	private final KafkaConsumer<String, TaskResult> consumer;
 	private final String testbed;
@@ -233,6 +233,7 @@ public class SimpleRCTaskConsumer implements Runnable {
 								try {
 									if (checkAll()) {
 										while (stationsCheck[threadId] == true) {
+											System.out.println("the fuckity is " + stationsCheck.length);
 											System.out.println("thread:" + threadId + " is waiting");
 										}
 									} else {

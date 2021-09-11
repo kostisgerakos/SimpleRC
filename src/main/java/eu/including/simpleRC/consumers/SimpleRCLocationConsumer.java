@@ -18,7 +18,7 @@ import eu.including.simpleRC.producers.GotoProducer;
 import eu.including.simpleRC.producers.ManualTaskProducer;
 import eu.including.uxv.Location;
 
-public class SimpleRCLocationConsumer implements Runnable {
+public class SimpleRCLocationConsumer implements Runnable,SimpleRCConsumersInterface {
 
 	private final KafkaConsumer<String, Location> consumer;
 	private final String testbed;
